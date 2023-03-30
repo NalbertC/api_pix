@@ -6,7 +6,7 @@ import path from "path";
 dotenv.config();
 
 const cert = fs.readFileSync(
-  path.resolve(__dirname, "..", "certificate", String(process.env.GN_CERT))
+  path.resolve(__dirname, "..", "certificate", String(process.env.CERT))
 );
 
 const agent = new https.Agent({
@@ -15,14 +15,14 @@ const agent = new https.Agent({
 });
 
 const credentials = Buffer.from(
-  `${String(process.env.GN_CLIENT_ID)}:${String(process.env.GN_CLIENT_SECRET)}`
+  `${String(process.env.CLIENT_ID)}:${String(process.env.CLIENT_SECRET)}`
 ).toString("base64");
 
 const authenticate = () => {
   console.log("HELLO");
   return axios({
     method: "POST",
-    url: `${String(process.env.GN_ENDPOINT)}/oauth/token`,
+    url: `${String(process.env.ENDPOINT)}/oauth/token`,
     headers: {
       Authorization: `Basic ${credentials}`,
       "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export const GNRequest = async () => {
   const accessToken = authResponse.data?.access_token;
 
   return axios.create({
-    baseURL: String(process.env.GN_ENDPOINT),
+    baseURL: String(process.env.ENDPOINT),
     httpsAgent: agent,
     headers: {
       Authorization: `Bearer ${accessToken}`,

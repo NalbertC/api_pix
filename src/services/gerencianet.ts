@@ -18,7 +18,7 @@ export const qrCode = async (req: Request, res: Response) => {
       nome: "Francisco da Silva",
     },
     valor: {
-      original: "00.10",
+      original: "03.90",
     },
     chave: `${String(process.env.CHAVE_PIX_ALEATORIA)}`,
     solicitacaoPagador: "Informe o número ou identificador do pedido.",
