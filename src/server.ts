@@ -9,6 +9,9 @@ import { router } from "./routes";
 const server = express();
 
 //----middlewares------
+server.set("view engine", "ejs");
+server.set("views", "src/views");
+
 server.use(cors());
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());

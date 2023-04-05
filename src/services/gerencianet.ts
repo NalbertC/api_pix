@@ -9,6 +9,7 @@ const reqGNAlready = GNRequest();
 // gerar o qrcode pix
 export const qrCode = async (req: Request, res: Response) => {
   const reqGN = await reqGNAlready;
+
   const dataCob = {
     calendario: {
       expiracao: 3600,
@@ -18,7 +19,7 @@ export const qrCode = async (req: Request, res: Response) => {
       nome: "Francisco da Silva",
     },
     valor: {
-      original: "03.90",
+      original: "00.10",
     },
     chave: `${String(process.env.CHAVE_PIX_ALEATORIA)}`,
     solicitacaoPagador: "Informe o número ou identificador do pedido.",
@@ -30,7 +31,10 @@ export const qrCode = async (req: Request, res: Response) => {
     `/v2/loc/${cobResponse.data.loc.id}/qrcode`
   );
 
-  return res.json(qrcodeResponse.data);
+  return res.render("qrcode", {
+    qrcodeImage: qrcodeResponse.data.imagemQrcode,
+    qrCode: qrcodeResponse.data.qrcode,
+  });
 };
 
 export const cobranca = async (req: Request, res: Response) => {
@@ -54,6 +58,7 @@ export const pix = async (req: Request, res: Response) => {
 };
 
 export const webhook = async (req: Request, res: Response) => {
-  // console.log(req.body);
-  return res.json("Olá mundo");
+  console.log(req.body);
+
+  return res.send("200");
 };
