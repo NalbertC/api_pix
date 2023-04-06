@@ -9,5 +9,7 @@ Para execultar esta aplicação:
 ```
 yarn 
 
+yarn build
+
 yarn dev
 ```
