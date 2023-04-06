@@ -4,7 +4,6 @@ import express from "express";
 import morgan from "morgan";
 dotenv.config();
 
-import bodyParser from "body-parser";
 import { router } from "./routes";
 
 const server = express();
@@ -14,7 +13,6 @@ server.set("view engine", "ejs");
 server.set("views", "src/views");
 
 server.use(cors());
-server.use(bodyParser)
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(morgan("dev"));
