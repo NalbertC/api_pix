@@ -60,5 +60,5 @@ export const pix = async (req: Request, res: Response) => {
 export const webhook = async (req: Request, res: Response) => {
   console.log(req.body);
 
-  return res.send("200");
+  return res.render("success");
 };
