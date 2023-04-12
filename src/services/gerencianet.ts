@@ -62,3 +62,9 @@ export const webhook = async (req: Request, res: Response) => {
 
   return res.render("success");
 };
+
+export const teste = async (req: Request, res: Response) => {
+  const teste = req.baseUrl;
+
+  return res.render("teste");
+};
